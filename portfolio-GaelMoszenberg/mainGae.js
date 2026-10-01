@@ -20,6 +20,10 @@ document.querySelectorAll('a[href^="#"]').forEach(enlace => {
 
 // Actualizar navegación activa al hacer scroll
 window.addEventListener('scroll', function() {
+    const alturaRecorrible = document.documentElement.scrollHeight - window.innerHeight;
+    const progreso = alturaRecorrible > 0 ? window.scrollY / alturaRecorrible : 0;
+    document.documentElement.style.setProperty('--progreso-scroll', progreso);
+
     const secciones = document.querySelectorAll('section[id]');
     const posicionScroll = window.scrollY + 150;
     
@@ -322,6 +326,46 @@ function initCarousel() {
 
 // Inicialización
 document.addEventListener('DOMContentLoaded', function() {
+    const elementosRevelar = document.querySelectorAll(
+        '.hero-copy, .hero-retrato, .tarjeta-info, .estadisticas, .cta-trabajemos, .columna-izquierda, .columna-derecha > *, .grid-servicios > *, .cta-servicios > *, .titulo-proyectos, .carousel-container, .contenedor-contacto > *'
+    );
+
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const observerRevelado = new IntersectionObserver((entradas, observer) => {
+            entradas.forEach(entrada => {
+                if (entrada.isIntersecting) {
+                    entrada.target.classList.add('visible');
+                    observer.unobserve(entrada.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -36px 0px' });
+
+        elementosRevelar.forEach((elemento, indice) => {
+            elemento.classList.add('revelar');
+            elemento.style.setProperty('--revelar-demora', `${(indice % 5) * 70}ms`);
+            observerRevelado.observe(elemento);
+        });
+    }
+
+    const retrato = document.querySelector('.hero-retrato');
+    const permiteParallax = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const reduceMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (retrato && permiteParallax && !reduceMovimiento) {
+        retrato.addEventListener('pointermove', evento => {
+            const limites = retrato.getBoundingClientRect();
+            const desplazamientoX = (evento.clientX - limites.left) / limites.width - 0.5;
+            const desplazamientoY = (evento.clientY - limites.top) / limites.height - 0.5;
+            retrato.style.setProperty('--parallax-x', `${desplazamientoX * -10}px`);
+            retrato.style.setProperty('--parallax-y', `${desplazamientoY * -10}px`);
+        });
+
+        retrato.addEventListener('pointerleave', () => {
+            retrato.style.setProperty('--parallax-x', '0px');
+            retrato.style.setProperty('--parallax-y', '0px');
+        });
+    }
+
     document.querySelectorAll('.enlace-proyecto').forEach(enlace => {
         const tituloProyecto = enlace.closest('.info-proyecto')?.querySelector('.titulo-proyecto')?.textContent.trim();
         if (tituloProyecto) {
