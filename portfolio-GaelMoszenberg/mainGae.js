@@ -193,10 +193,20 @@ function initCarousel() {
         return window.innerWidth > 968 ? 3 : window.innerWidth > 640 ? 2 : 1;
     }
 
+    function getCarouselGap() {
+        return parseFloat(getComputedStyle(carousel).columnGap) || 0;
+    }
+
+    function getCarouselContentWidth() {
+        const estilosCarrusel = getComputedStyle(carousel);
+        const paddingHorizontal = parseFloat(estilosCarrusel.paddingLeft) + parseFloat(estilosCarrusel.paddingRight);
+        return carousel.clientWidth - paddingHorizontal;
+    }
+
     // Configurar el ancho de los slides
     function setupSlides() {
-        const containerWidth = carousel.clientWidth;
-        const gap = 32; // 2rem en pixeles
+        const containerWidth = getCarouselContentWidth();
+        const gap = getCarouselGap();
         const totalGaps = slidesToShow - 1;
         const totalGapWidth = gap * totalGaps;
         const slideWidth = (containerWidth - totalGapWidth) / slidesToShow;
@@ -223,8 +233,8 @@ function initCarousel() {
 
     // Actualizar la posición del carrusel
     function updateCarousel() {
-        const containerWidth = carousel.clientWidth;
-        const gap = 32; // 2rem en pixeles
+        const containerWidth = getCarouselContentWidth();
+        const gap = getCarouselGap();
         const totalGaps = slidesToShow - 1;
         const totalGapWidth = gap * totalGaps;
         const slideWidth = (containerWidth - totalGapWidth) / slidesToShow;
