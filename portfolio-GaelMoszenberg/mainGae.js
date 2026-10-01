@@ -155,16 +155,19 @@ if (formularioContacto) {
                 },
                 body: JSON.stringify(datosEnvio)
             });
-            const resultado = await respuesta.json();
+            const resultado = await respuesta.json().catch(() => ({}));
 
             if (!respuesta.ok || resultado.success === false || resultado.success === 'false') {
-                throw new Error('No se pudo enviar el mensaje.');
+                throw new Error(resultado.message || resultado.error || `El servicio respondió con el estado ${respuesta.status}.`);
             }
 
             estadoFormulario.textContent = '¡Mensaje enviado! Gracias por contactarme.';
             formularioContacto.reset();
         } catch (error) {
-            estadoFormulario.textContent = 'No se pudo enviar el mensaje. Probá de nuevo más tarde.';
+            console.error('Error al enviar el formulario:', error);
+            estadoFormulario.textContent = error instanceof TypeError
+                ? 'No se pudo conectar con el servicio de correo. Revisá tu conexión e intentá de nuevo.'
+                : `No se pudo enviar: ${error.message || 'ocurrió un error inesperado.'}`;
         } finally {
             botonEnviar.disabled = false;
         }
