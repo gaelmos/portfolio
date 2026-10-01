@@ -85,16 +85,44 @@ itemsMenuServicio.forEach(item => {
     item.addEventListener('click', function() {
         const servicioSeleccionado = this.getAttribute('data-servicio');
         
-        // Remover clase activa de todos los items
-        itemsMenuServicio.forEach(i => i.classList.remove('activo'));
-        detallesServicio.forEach(d => d.classList.remove('activo'));
-        
-        // Agregar clase activa al item seleccionado
-        this.classList.add('activo');
+        itemsMenuServicio.forEach(tab => {
+            const seleccionado = tab === this;
+            tab.classList.toggle('activo', seleccionado);
+            tab.setAttribute('aria-selected', seleccionado);
+            tab.setAttribute('tabindex', seleccionado ? '0' : '-1');
+        });
+
+        detallesServicio.forEach(detalle => {
+            const seleccionado = detalle.getAttribute('data-servicio') === servicioSeleccionado;
+            detalle.classList.toggle('activo', seleccionado);
+            detalle.hidden = !seleccionado;
+        });
+
         const detalleActivo = document.querySelector(`.servicio-detalle[data-servicio="${servicioSeleccionado}"]`);
         if (detalleActivo) {
             detalleActivo.classList.add('activo');
         }
+    });
+
+    item.addEventListener('keydown', function(evento) {
+        const indiceActual = Array.from(itemsMenuServicio).indexOf(this);
+        let indiceSiguiente;
+
+        if (evento.key === 'ArrowDown' || evento.key === 'ArrowRight') {
+            indiceSiguiente = (indiceActual + 1) % itemsMenuServicio.length;
+        } else if (evento.key === 'ArrowUp' || evento.key === 'ArrowLeft') {
+            indiceSiguiente = (indiceActual - 1 + itemsMenuServicio.length) % itemsMenuServicio.length;
+        } else if (evento.key === 'Home') {
+            indiceSiguiente = 0;
+        } else if (evento.key === 'End') {
+            indiceSiguiente = itemsMenuServicio.length - 1;
+        } else {
+            return;
+        }
+
+        evento.preventDefault();
+        itemsMenuServicio[indiceSiguiente].focus();
+        itemsMenuServicio[indiceSiguiente].click();
     });
 });
 
@@ -105,33 +133,16 @@ if (formularioContacto) {
     formularioContacto.addEventListener('submit', function(evento) {
         evento.preventDefault();
         
-        // Obtener valores del formulario
-        const nombre = document.getElementById('nombre').value;
-        const email = document.getElementById('email').value;
-        const asunto = document.getElementById('asunto').value;
-        const mensaje = document.getElementById('mensaje').value;
-        
-        // Validación básica
-        if (!nombre || !email || !asunto || !mensaje) {
-            alert('Por favor, completa todos los campos.');
-            return;
-        }
-        
-        // Validar email
-        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!regexEmail.test(email)) {
-            alert('Por favor, ingresa un email válido.');
-            return;
-        }
-        
-        // Aquí normalmente enviarías los datos a un servidor
-        console.log('Formulario enviado:', { nombre, email, asunto, mensaje });
-        
-        // Mostrar mensaje de éxito
-        alert('¡Mensaje enviado con éxito! Te contactaré pronto.');
-        
-        // Limpiar formulario
-        formularioContacto.reset();
+        const datosFormulario = new FormData(formularioContacto);
+        const nombre = datosFormulario.get('nombre').trim();
+        const email = datosFormulario.get('email').trim();
+        const asunto = datosFormulario.get('asunto').trim();
+        const mensaje = datosFormulario.get('mensaje').trim();
+        const cuerpo = `Nombre: ${nombre}\nEmail: ${email}\n\n${mensaje}`;
+        const enlaceCorreo = `mailto:gaelmos21@gmail.com?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+
+        document.getElementById('estado-formulario').textContent = 'Se abrirá tu aplicación de correo para que revises y envíes el mensaje.';
+        window.location.href = enlaceCorreo;
     });
 }
 
@@ -156,28 +167,17 @@ if (botonMenuMovil) {
             botonMenuMovil.setAttribute('aria-label', 'Abrir menú');
         });
     });
-}
 
-// Efecto parallax suave en las tarjetas
-document.querySelectorAll('.tarjeta-info, .tarjeta-proyecto').forEach(tarjeta => {
-    tarjeta.addEventListener('mousemove', function(evento) {
-        const rect = this.getBoundingClientRect();
-        const x = evento.clientX - rect.left;
-        const y = evento.clientY - rect.top;
-        
-        const centroX = rect.width / 2;
-        const centroY = rect.height / 2;
-        
-        const rotacionX = (y - centroY) / 20;
-        const rotacionY = (centroX - x) / 20;
-        
-        this.style.transform = `perspective(1000px) rotateX(${rotacionX}deg) rotateY(${rotacionY}deg) translateY(-5px)`;
+    document.addEventListener('keydown', function(evento) {
+        if (evento.key === 'Escape' && menuNav.classList.contains('activo')) {
+            menuNav.classList.remove('activo');
+            botonMenuMovil.classList.remove('activo');
+            botonMenuMovil.setAttribute('aria-expanded', 'false');
+            botonMenuMovil.setAttribute('aria-label', 'Abrir menú');
+            botonMenuMovil.focus();
+        }
     });
-    
-    tarjeta.addEventListener('mouseleave', function() {
-        this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-    });
-});
+}
 
 // Carrusel de proyectos
 function initCarousel() {
@@ -187,7 +187,11 @@ function initCarousel() {
     const dotsContainer = document.querySelector('.carousel-dots');
     const slides = carousel.querySelectorAll('.tarjeta-proyecto');
     let currentSlide = 0;
-    const slidesToShow = window.innerWidth > 968 ? 3 : window.innerWidth > 640 ? 2 : 1;
+    let slidesToShow = getSlidesToShow();
+
+    function getSlidesToShow() {
+        return window.innerWidth > 968 ? 3 : window.innerWidth > 640 ? 2 : 1;
+    }
 
     // Configurar el ancho de los slides
     function setupSlides() {
@@ -208,9 +212,10 @@ function initCarousel() {
         dotsContainer.innerHTML = '';
         const numDots = Math.ceil(slides.length / slidesToShow);
         for (let i = 0; i < numDots; i++) {
-            const dot = document.createElement('div');
+            const dot = document.createElement('button');
+            dot.type = 'button';
             dot.classList.add('carousel-dot');
-            if (i === 0) dot.classList.add('active');
+            dot.setAttribute('aria-label', `Ver grupo ${i + 1} de proyectos`);
             dot.addEventListener('click', () => goToSlide(i));
             dotsContainer.appendChild(dot);
         }
@@ -230,6 +235,14 @@ function initCarousel() {
         const dots = dotsContainer.querySelectorAll('.carousel-dot');
         dots.forEach((dot, index) => {
             dot.classList.toggle('active', index === currentSlide);
+            dot.setAttribute('aria-current', index === currentSlide ? 'true' : 'false');
+        });
+
+        const primerSlideVisible = currentSlide * slidesToShow;
+        slides.forEach((slide, index) => {
+            const visible = index >= primerSlideVisible && index < primerSlideVisible + slidesToShow;
+            slide.setAttribute('aria-hidden', !visible);
+            slide.toggleAttribute('inert', !visible);
         });
 
         // Actualizar estado de los botones
@@ -256,6 +269,8 @@ function initCarousel() {
 
     // Responsive
     window.addEventListener('resize', () => {
+        slidesToShow = getSlidesToShow();
+        currentSlide = Math.min(currentSlide, Math.ceil(slides.length / slidesToShow) - 1);
         setupSlides();
         createDots();
         updateCarousel();
@@ -269,27 +284,12 @@ function initCarousel() {
 
 // Inicialización
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Portfolio cargado correctamente');
-    
-    // Agregar animación de entrada a las secciones
-    const observador = new IntersectionObserver((entradas) => {
-        entradas.forEach(entrada => {
-            if (entrada.isIntersecting) {
-                entrada.target.style.opacity = '1';
-                entrada.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, {
-        threshold: 0.1
-    });
-    
-    document.querySelectorAll('section').forEach(seccion => {
-        seccion.style.opacity = '0';
-        seccion.style.transform = 'translateY(30px)';
-        seccion.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observador.observe(seccion);
+    document.querySelectorAll('.enlace-proyecto').forEach(enlace => {
+        const tituloProyecto = enlace.closest('.info-proyecto')?.querySelector('.titulo-proyecto')?.textContent.trim();
+        if (tituloProyecto) {
+            enlace.setAttribute('aria-label', `Ver proyecto ${tituloProyecto}`);
+        }
     });
 
-    // Inicializar el carrusel
     initCarousel();
 });

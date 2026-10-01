@@ -4,13 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gael Moszenberg - Desarrollador BackEnd</title>
+    <meta name="description" content="Portfolio de Gael Moszenberg: desarrollo backend, bases de datos e inteligencia artificial en Buenos Aires.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
+    <a class="enlace-saltar" href="#contenido">Saltar al contenido</a>
     <!-- nav -->
-    <nav class="navegacion">
+    <nav class="navegacion" aria-label="Navegación principal">
         <div class="contenedor-nav">
-            <div class="logo">Gael</div>
+            <a href="#inicio" class="logo" aria-label="Gael Moszenberg, inicio">GM<span>.</span></a>
             <ul class="menu-nav" id="menu-principal">
                 <li><a href="#inicio" class="enlace-nav activo">Inicio</a></li>
                 <li><a href="#sobre-mi" class="enlace-nav">Sobre Mí</a></li>
@@ -27,42 +32,24 @@
     </nav>
 
     <!-- pefil Gae -->
+    <main id="contenido">
     <section id="inicio" class="seccion-inicio">
         <div class="contenedor-inicio">
-
-
-            <div class="tarjeta-perfil">
-                <div class="imagen-perfil">
+            <div class="hero-stage">
+                <div class="hero-copy">
+                    <p class="hero-eyebrow"><span class="hero-mark"></span> BACK-END · DATOS · IA</p>
+                    <h1 class="hero-titulo">Desarrollador <span>Full Stack</span></h1>
+                    <p class="hero-descripcion">Soy Gael Moszenberg, desarrollador backend y estudiante de la UTN en Buenos Aires. Diseño APIs, bases de datos y herramientas con inteligencia artificial.</p>
+                    <div class="hero-acciones">
+                        <a class="hero-primario" href="#proyectos">Ver proyectos <span aria-hidden="true">↗</span></a>
+                        <a class="hero-secundario" href="#sobre-mi">Conocer mi perfil <span aria-hidden="true">↓</span></a>
+                    </div>
+                    <p class="hero-tecnologias">PYTHON <span>·</span> SQL <span>·</span> PHP <span>·</span> JAVASCRIPT</p>
+                </div>
+                <figure class="hero-retrato">
                     <img src="fotomia.jpeg" alt="Gael Moszenberg">
-                </div>
-                <h2 class="nombre-perfil">Gael Moszenberg</h2>
-                <h2 class="nombre-perfil">21/11/07</h2>
-                <p class="titulo-perfil">Desarrollador BackEnd</p>
-                <p class="descripcion-perfil">Soy un desarrollador BackEnd e Ingeniero en UTN con sede en Buenos Aires, Argentina.</p>
-                <div class="iconos-sociales">
-                    <!-- Logo mail -->
-                    <a href="mailto:gaelmoszenberg@gmail.com" class="icono-social">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                    </a>
-                    <!-- Logo instagram -->
-                    <a href="https://www.instagram.com/gael_moszenberg/?next=%2F" class="icono-social">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                        </svg>
-                    </a>
-                    <!-- Logo GitHub -->
-                    <a href="https://github.com/gaelmos" class="icono-social">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                        </svg>
-                    </a>
-                </div>
-                <a href="#contacto" class="boton-contacto">Contactarme</a>
+                    <figcaption><span>GAEL MOSZENBERG</span><span>BUENOS AIRES, ARGENTINA</span></figcaption>
+                </figure>
             </div>
             <!-- Cuadrado de más sobre mí -->
             <div class="tarjetas-info">
@@ -102,7 +89,7 @@
                     </div>
                     <h3 class="titulo-tarjeta">Herramientas</h3>
                     <p class="descripcion-tarjeta">Tecnología</p>
-                    <a href="#" class="flecha-tarjeta">→</a>
+                    <a href="#servicios" class="flecha-tarjeta" aria-label="Ver herramientas y tecnologías">→</a>
                 </div>
 
                 <!-- Cuadrado de mis experiencias -->
@@ -162,23 +149,7 @@
                 <h2 class="nombre-sobre-mi">Gael Moszenberg</h2>
                 <p class="titulo-sobre-mi">Desarrollador en BackEnd</p>
                 <div class="iconos-sociales-sobre-mi">
-
-                    <!-- Logo facebook -->
-                    <a href="#" class="icono-social-sobre-mi">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                        </svg>
-                    </a>
-
-                    <!-- Logo twitter -->
-                    <a href="#" class="icono-social-sobre-mi">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
-                        </svg>
-                    </a>
-
-                    <!-- Logo linkedin -->
-                    <a href="#" class="icono-social-sobre-mi">
+                    <a href="https://www.linkedin.com/in/gael-moszenberg-6ba485358/" target="_blank" rel="noopener noreferrer" class="icono-social-sobre-mi" aria-label="LinkedIn">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                             <rect x="2" y="9" width="4" height="12"></rect>
@@ -187,7 +158,7 @@
                     </a>
 
                     <!-- Logo GitHub -->
-                    <a href="#" class="icono-social-sobre-mi">
+                    <a href="https://github.com/gaelmos" target="_blank" rel="noopener noreferrer" class="icono-social-sobre-mi" aria-label="GitHub">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
                         </svg>
@@ -255,46 +226,46 @@
             </h2>
 
             <div class="grid-servicios">
-                <div class="menu-servicios">
+                <div class="menu-servicios" role="tablist" aria-label="Áreas de trabajo">
 
                     <!-- Diseño base de datos -->
-                    <div class="item-menu-servicio activo" data-servicio="Diseño_de_base_de_datos">
+                    <button type="button" role="tab" id="tab-datos" aria-controls="panel-datos" aria-selected="true" tabindex="0" class="item-menu-servicio activo" data-servicio="Diseño_de_base_de_datos">
                         <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                             <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
                             <path d="M3 5v6c0 1.7 4 3 9 3s9-1.3 9-3V5"></path>
                             <path d="M3 11v6c0 1.7 4 3 9 3s9-1.3 9-3v-6"></path>
                         </svg>
                         <span>Base de datos</span>
-                    </div>
+                    </button>
 
                     <!-- Base de datos -->
-                    <div class="item-menu-servicio" data-servicio="Base-de-Datos">
+                    <button type="button" role="tab" id="tab-backend" aria-controls="panel-backend" aria-selected="false" tabindex="-1" class="item-menu-servicio" data-servicio="Base-de-Datos">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="3"></circle>
                             <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                         </svg>
                         <span>Desarrollo de servidores</span>
-                    </div>
+                    </button>
                     
                     <!-- Actitudes -->
-                    <div class="item-menu-servicio" data-servicio="Actitudes">
+                    <button type="button" role="tab" id="tab-equipo" aria-controls="panel-equipo" aria-selected="false" tabindex="-1" class="item-menu-servicio" data-servicio="Actitudes">
                         <svg height="24" viewBox="0 -960 960 960" width="24" fill="#FFFFFF">
                             <path d="M475-160q4 0 8-2t6-4l328-328q12-12 17.5-27t5.5-30q0-16-5.5-30.5T817-607L647-777q-11-12-25.5-17.5T591-800q-15 0-30 5.5T534-777l-11 11 74 75q15 14 22 32t7 38q0 42-28.5 70.5T527-522q-20 0-38.5-7T456-550l-75-74-175 175q-3 3-4.5 6.5T200-435q0 8 6 14.5t14 6.5q4 0 8-2t6-4l136-136 56 56-135 136q-3 3-4.5 6.5T285-350q0 8 6 14t14 6q4 0 8-2t6-4l136-135 56 56-135 136q-3 2-4.5 6t-1.5 8q0 8 6 14t14 6q4 0 7.5-1.5t6.5-4.5l136-135 56 56-136 136q-3 3-4.5 6.5T454-180q0 8 6.5 14t14.5 6Zm-1 80q-37 0-65.5-24.5T375-166q-34-5-57-28t-28-57q-34-5-56.5-28.5T206-336q-38-5-62-33t-24-66q0-20 7.5-38.5T149-506l232-231 131 131q2 3 6 4.5t8 1.5q9 0 15-5.5t6-14.5q0-4-1.5-8t-4.5-6L398-777q-11-12-25.5-17.5T342-800q-15 0-30 5.5T285-777L144-635q-9 9-15 21t-8 24q-2 12 0 24.5t8 23.5l-58 58q-17-23-25-50.5T40-590q2-28 14-54.5T87-692l141-141q24-23 53.5-35t60.5-12q31 0 60.5 12t52.5 35l11 11 11-11q24-23 53.5-35t60.5-12q31 0 60.5 12t52.5 35l169 169q23 23 35 53t12 61q0 31-12 60.5T873-437L545-110q-14 14-32.5 22T474-80Zm-99-560Z"/>
                         </svg>
                         <span>Actitudes profesionales</span>
-                    </div>
+                    </button>
 
                     <!-- Pensamiento logico -->
-                    <div class="item-menu-servicio" data-servicio="Pensamiento-Lógico">
+                    <button type="button" role="tab" id="tab-logica" aria-controls="panel-logica" aria-selected="false" tabindex="-1" class="item-menu-servicio" data-servicio="Pensamiento-Lógico">
                         <svg height="24" viewBox="0 -960 960 960" width="24" fill="#FFFFFF">
                             <path d="M390-120q-51 0-88-35.5T260-241q-60-8-100-53t-40-106q0-21 5.5-41.5T142-480q-11-18-16.5-38t-5.5-42q0-61 40-105.5t99-52.5q3-51 41-86.5t90-35.5q26 0 48.5 10t41.5 27q18-17 41-27t49-10q52 0 89.5 35t40.5 86q59 8 99.5 53T840-560q0 22-5.5 42T818-480q11 18 16.5 38.5T840-400q0 62-40.5 106.5T699-241q-5 50-41.5 85.5T570-120q-25 0-48.5-9.5T480-156q-19 17-42 26.5t-48 9.5Zm130-590v460q0 21 14.5 35.5T570-200q20 0 34.5-16t15.5-36q-21-8-38.5-21.5T550-306q-10-14-7.5-30t16.5-26q14-10 30-7.5t26 16.5q11 16 28 24.5t37 8.5q33 0 56.5-23.5T760-400q0-5-.5-10t-2.5-10q-17 10-36.5 15t-40.5 5q-17 0-28.5-11.5T640-440q0-17 11.5-28.5T680-480q33 0 56.5-23.5T760-560q0-33-23.5-56T680-640q-11 18-28.5 31.5T613-587q-16 6-31-1t-20-23q-5-16 1.5-31t22.5-20q15-5 24.5-18t9.5-30q0-21-14.5-35.5T570-760q-21 0-35.5 14.5T520-710Zm-80 460v-460q0-21-14.5-35.5T390-760q-21 0-35.5 14.5T340-710q0 16 9 29.5t24 18.5q16 5 23 20t2 31q-6 16-21 23t-31 1q-21-8-38.5-21.5T279-640q-32 1-55.5 24.5T200-560q0 33 23.5 56.5T280-480q17 0 28.5 11.5T320-440q0 17-11.5 28.5T280-400q-21 0-40.5-5T203-420q-2 5-2.5 10t-.5 10q0 33 23.5 56.5T280-320q20 0 37-8.5t28-24.5q10-14 26-16.5t30 7.5q14 10 16.5 26t-7.5 30q-14 19-32 33t-39 22q1 20 16 35.5t35 15.5q21 0 35.5-14.5T440-250Zm40-230Z"/>
                         </svg>
                         <span>Pensamiento Lógico</span>
-                    </div>
+                    </button>
                 </div>
 
                 <div class="contenido-servicios">
-                    <div class="servicio-detalle activo" data-servicio="Diseño_de_base_de_datos">
+                    <div class="servicio-detalle activo" id="panel-datos" role="tabpanel" aria-labelledby="tab-datos" tabindex="0" data-servicio="Diseño_de_base_de_datos">
                         <h3 class="subtitulo-servicio">DISEÑO DE BASE DE DATOS</h3>
                         <p class="descripcion-servicio">
                             Mis servicios de diseño de bases de datos están orientados a crear sistemas 
@@ -302,14 +273,14 @@
                             que aseguran un acceso ágil a la información y una gestión sencilla de los datos. Acompaño todo el proceso, desde la planificación del modelo relacional hasta la implementación en MySQL o PostgreSQL (PGAdmin4), garantizando una base sólida que impulse el crecimiento de tu proyecto sin afectar el rendimiento ni la integridad de los datos
                         </p>
                     </div>
-                    <div class="servicio-detalle" data-servicio="Base-de-Datos">
+                    <div class="servicio-detalle" id="panel-backend" role="tabpanel" aria-labelledby="tab-backend" tabindex="0" data-servicio="Base-de-Datos" hidden>
                         <h3 class="subtitulo-servicio">BACK-END Y DESARROLLO DE SERVIDORES</h3>
                         <p class="descripcion-servicio">
                             Diseño y desarrollo la lógica interna de aplicaciones web, construyendo APIs 
                             seguras, rápidas y escalables con Python (Flask, FastAPI) y Node.js (Express). 
                             Mi trabajo se centra en una arquitectura limpia, una comunicación eficiente con las bases de datos y un rendimiento confiable. Cada componente del sistema está pensado para optimizar procesos, garantizar estabilidad y facilitar el trabajo de los desarrolladores que continúen el proyecto                        </p>
                     </div>
-                    <div class="servicio-detalle" data-servicio="Actitudes">
+                    <div class="servicio-detalle" id="panel-equipo" role="tabpanel" aria-labelledby="tab-equipo" tabindex="0" data-servicio="Actitudes" hidden>
                         <h3 class="subtitulo-servicio">ACTITUDES PROFESIONALES</h3>
                         <p class="descripcion-servicio">
                             Me caracterizo por una fuerte orientación al trabajo en equipo, basada en la escucha activa, la comunicación clara y el respeto por las decisiones colectivas. Siempre busco aportar soluciones que realmente sumen y ayuden a que el proyecto avance con solidez.
@@ -317,7 +288,7 @@
                             Para mí, colaborar no es solo dividir tareas: es construir juntos, comprender cómo piensa el equipo y encontrar la mejor manera de unir habilidades para lograr resultados eficientes, creativos y bien fundamentados. Porque el verdadero crecimiento profesional surge de esa combinación de conocimiento, empatía y trabajo conjunto
                         </p>
                     </div>
-                    <div class="servicio-detalle" data-servicio="Pensamiento-Lógico">
+                    <div class="servicio-detalle" id="panel-logica" role="tabpanel" aria-labelledby="tab-logica" tabindex="0" data-servicio="Pensamiento-Lógico" hidden>
                         <h3 class="subtitulo-servicio">PENSAMIENTO LÓGICO</h3>
                         <p class="descripcion-servicio">
                             Mi mayor fortaleza es el razonamiento lógico y analítico que aplico en cada etapa del desarrollo. Antes de escribir una sola línea de código, me enfoco en entender a fondo el problema, analizar la estructura del sistema y prever posibles errores.
@@ -344,16 +315,8 @@
                     <h3 class="titulo-perfiles">PONETE EN CONTACTO CONMIGO</h3>
                     <p class="subtitulo-perfiles">Perfiles</p>
                     <div class="iconos-perfiles">
-                        <a href="#" class="icono-perfil">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                            </svg>
-                        </a>
-                        <a href="#" class="icono-perfil">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
-                            </svg>
-                        </a>
+                        <a class="perfil-servicio-enlace" href="https://github.com/gaelmos" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                        <a class="perfil-servicio-enlace" href="https://www.linkedin.com/in/gael-moszenberg-6ba485358/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
                     </div>
                     <a href="#contacto" class="flecha-perfiles">→</a>
                 </div>
@@ -369,9 +332,9 @@
                 Todos los Proyectos
                 <span class="guion">-</span>
             </h2>
-            <div class="carousel-container">
-                <button class="carousel-button prev">←</button>
-                <div class="carousel-proyectos">
+            <div class="carousel-container" role="region" aria-label="Proyectos destacados" aria-roledescription="carrusel">
+                <button class="carousel-button prev" type="button" aria-label="Ver proyectos anteriores">←</button>
+                <div class="carousel-proyectos" aria-live="polite">
                     <div class="tarjeta-proyecto">
                         <div class="imagen-proyecto">
                             <img src="./imagenes/Captura de pantalla 2025-11-05 203720.png" alt="fultboprofe">
@@ -379,7 +342,6 @@
                         <div class="info-proyecto">
                             <p class="categoria-proyecto">Juego web</p>
                             <h3 class="titulo-proyecto">fultboprofe</h3>
-                            <a href="#" class="enlace-proyecto">→</a>
                         </div>
                     </div>
 
@@ -459,8 +421,8 @@
                         </div>
                     </div>
                 </div>
-                <button class="carousel-button next">→</button>
-                <div class="carousel-dots"></div>
+                <button class="carousel-button next" type="button" aria-label="Ver más proyectos">→</button>
+                <div class="carousel-dots" role="group" aria-label="Páginas de proyectos"></div>
             </div>
         </div>
     </section>
@@ -480,8 +442,7 @@
                     </div>
                     <div class="texto-contacto">
                         <p class="label-contacto">EMAIL</p>
-                        <p class="valor-contacto">gaelmos21@gmail.com</p>
-                        <p class="valor-contacto">mail</p>
+                        <a class="valor-contacto" href="mailto:gaelmos21@gmail.com">gaelmos21@gmail.com</a>
                     </div>
                 </div>
 
@@ -493,7 +454,7 @@
                     </div>
                     <div class="texto-contacto">
                         <p class="label-contacto">CONTACTO</p>
-                        <p class="valor-contacto">+54 9 11 8923-2145</p>
+                        <a class="valor-contacto" href="tel:+5491189232145">+54 9 11 8923-2145</a>
                     </div>
                 </div>
 
@@ -512,7 +473,7 @@
                     
                    
                         <!-- Telefono -->
-                        <a href="#" class="icono-red-contacto">
+                        <a href="tel:+5491189232145" class="icono-red-contacto" aria-label="Llamar por teléfono">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                             </svg>
@@ -541,24 +502,26 @@
                 
                 <form id="formulario-contacto" class="form-contacto">
                     <div class="campo-formulario">
-                        <input type="text" id="nombre" name="nombre" placeholder="Nombre *" required>
+                        <input type="text" id="nombre" name="nombre" placeholder="Nombre *" autocomplete="name" aria-label="Nombre" required>
                     </div>
                     <div class="campo-formulario">
-                        <input type="email" id="email" name="email" placeholder="Email *" required>
+                        <input type="email" id="email" name="email" placeholder="Email *" autocomplete="email" aria-label="Email" required>
                     </div>
                     <div class="campo-formulario">
-                        <input type="text" id="asunto" name="asunto" placeholder="Asunto *" required>
+                        <input type="text" id="asunto" name="asunto" placeholder="Asunto *" aria-label="Asunto" required>
                     </div>
                     <div class="campo-formulario">
-                        <textarea id="mensaje" name="mensaje" placeholder="Escribi Tu Mensaje *" rows="6" required></textarea>
+                        <textarea id="mensaje" name="mensaje" placeholder="Escribí tu mensaje *" rows="6" aria-label="Mensaje" required></textarea>
                     </div>
-                    <button type="submit" class="boton-enviar">Enviar Mensaje</button>
+                        <p class="estado-formulario" id="estado-formulario" aria-live="polite"></p>
+                        <button type="submit" class="boton-enviar">Preparar correo</button>
                 </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
+    </main>
     <footer class="footer">
         <div class="contenedor-footer">
             <h2 class="logo-footer">Gael Moszenberg</h2>
