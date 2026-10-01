@@ -1654,14 +1654,25 @@ textarea:focus-visible {
 }
 
 .perfil-servicio-enlace {
+    display: inline-flex;
+    min-height: 42px;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #dce1dc;
+    border-radius: 6px;
+    background: #f7f8f5;
     color: var(--color-azul);
     font-size: 0.9rem;
     font-weight: 800;
     text-decoration: none;
+    transition: var(--transicion);
 }
 
 .perfil-servicio-enlace:hover {
+    border-color: var(--color-azul);
     color: var(--color-coral);
+    transform: translateY(-2px);
 }
 
 .estado-formulario {
