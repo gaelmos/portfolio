@@ -141,8 +141,10 @@ const menuNav = document.querySelector('.menu-nav');
 
 if (botonMenuMovil) {
     botonMenuMovil.addEventListener('click', function() {
-        menuNav.classList.toggle('activo');
-        this.classList.toggle('activo');
+        const menuAbierto = menuNav.classList.toggle('activo');
+        this.classList.toggle('activo', menuAbierto);
+        this.setAttribute('aria-expanded', menuAbierto);
+        this.setAttribute('aria-label', menuAbierto ? 'Cerrar menú' : 'Abrir menú');
     });
     
     // Cerrar menú al hacer clic en un enlace
@@ -150,6 +152,8 @@ if (botonMenuMovil) {
         enlace.addEventListener('click', function() {
             menuNav.classList.remove('activo');
             botonMenuMovil.classList.remove('activo');
+            botonMenuMovil.setAttribute('aria-expanded', 'false');
+            botonMenuMovil.setAttribute('aria-label', 'Abrir menú');
         });
     });
 }
