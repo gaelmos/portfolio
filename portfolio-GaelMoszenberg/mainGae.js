@@ -130,19 +130,44 @@ itemsMenuServicio.forEach(item => {
 const formularioContacto = document.getElementById('formulario-contacto');
 
 if (formularioContacto) {
-    formularioContacto.addEventListener('submit', function(evento) {
+    formularioContacto.addEventListener('submit', async function(evento) {
         evento.preventDefault();
-        
-        const datosFormulario = new FormData(formularioContacto);
-        const nombre = datosFormulario.get('nombre').trim();
-        const email = datosFormulario.get('email').trim();
-        const asunto = datosFormulario.get('asunto').trim();
-        const mensaje = datosFormulario.get('mensaje').trim();
-        const cuerpo = `Nombre: ${nombre}\nEmail: ${email}\n\n${mensaje}`;
-        const enlaceCorreo = `mailto:gaelmos21@gmail.com?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
 
-        document.getElementById('estado-formulario').textContent = 'Se abrirá tu aplicación de correo para que revises y envíes el mensaje.';
-        window.location.href = enlaceCorreo;
+        const datosFormulario = new FormData(formularioContacto);
+        const botonEnviar = formularioContacto.querySelector('button[type="submit"]');
+        const estadoFormulario = document.getElementById('estado-formulario');
+        const datosEnvio = {
+            name: datosFormulario.get('nombre'),
+            email: datosFormulario.get('email'),
+            _subject: datosFormulario.get('asunto'),
+            message: datosFormulario.get('mensaje')
+        };
+
+        botonEnviar.disabled = true;
+        estadoFormulario.textContent = 'Enviando mensaje...';
+
+        try {
+            const respuesta = await fetch('https://formsubmit.co/ajax/gaelmos21@gmail.com', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(datosEnvio)
+            });
+            const resultado = await respuesta.json();
+
+            if (!respuesta.ok || resultado.success === false || resultado.success === 'false') {
+                throw new Error('No se pudo enviar el mensaje.');
+            }
+
+            estadoFormulario.textContent = '¡Mensaje enviado! Gracias por contactarme.';
+            formularioContacto.reset();
+        } catch (error) {
+            estadoFormulario.textContent = 'No se pudo enviar el mensaje. Probá de nuevo más tarde.';
+        } finally {
+            botonEnviar.disabled = false;
+        }
     });
 }
 
